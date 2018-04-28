@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Repositories\PostRepository;
 
 
 class PostsController extends Controller
@@ -12,11 +13,8 @@ class PostsController extends Controller
             ->only('create', 'store');
     }
 
-    public function index() {
-        $posts = Post::latest()
-            ->filter(request(['year', 'month']))
-            ->get();
-
+    public function index(PostRepository $repository) {
+        $posts = $repository->all();
 
         return view('posts.index')
             ->with('posts', $posts);
