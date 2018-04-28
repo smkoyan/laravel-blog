@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary form-control">Register</button>
+            <button type="submit" class="btn btn-primary">Register</button>
         </div>
 
         @include('layouts.form_error')
