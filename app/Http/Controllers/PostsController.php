@@ -39,6 +39,8 @@ class PostsController extends Controller
             new Post($validatedData)
         );
 
+        session()->flash('message', 'Your post successfully published');
+
         return redirect('/');
     }
 }
