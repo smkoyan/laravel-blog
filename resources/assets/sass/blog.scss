@@ -163,4 +163,22 @@ h6, .h6 {
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
+
+.flash-message {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1;
+  animation: flash-message 4s forwards;
+}
+
+@keyframes flash-message {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
 }
