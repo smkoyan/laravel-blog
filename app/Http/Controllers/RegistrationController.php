@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\RegistrationRequest;
 use App\User;
 use App\Mail\WelcomeNew;
 
@@ -26,27 +26,21 @@ class RegistrationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  RegistrationRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegistrationRequest $request)
     {
-        // Validate request
-        $validatedData = $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed'
-        ]);
-
         // Create user
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        $user = User::create($validatedData);
+        $user = User::create(
+            $request->validated()
+        );
 
         // login user
         auth()->login($user);
 
         // send welcome email
-        \Mail::to($user)->send( new WelcomeNew($user) );
+        // \Mail::to($user)->send( new WelcomeNew($user) );
 
         // redirect user to home page
         return redirect()->home();
