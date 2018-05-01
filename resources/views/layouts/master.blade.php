@@ -19,6 +19,8 @@
 <body>
 @include('layouts.header')
 
+@include('layouts.flash')
+
 <div class="container">
     <div class="row">
         <div class="col-sm-8 blog-main">
