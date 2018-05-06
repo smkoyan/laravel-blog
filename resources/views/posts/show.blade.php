@@ -3,6 +3,18 @@
 @section('content')
     <h2>{{ $post->title }}</h2>
 
+    @if ( count($post->tags) )
+        <ul>
+            @foreach ($post->tags->pluck('name') as $tag)
+                <li>
+                    <a href="/posts/tags/{{ $tag }}">
+                        {{ $tag }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    @endif
+
     {{ $post->body }}
 
     @if (count($post->comments))
