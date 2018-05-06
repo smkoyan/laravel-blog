@@ -24,6 +24,10 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
+    }
+
     public function scopeFilter($query, $filters) {
         if ( isset($filters['year']) ) {
             $query->whereYear('created_at', request('year'));
